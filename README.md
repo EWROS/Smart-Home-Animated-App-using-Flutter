@@ -9,3 +9,4 @@ Welcome to the 'Animated Smart Home App'. In this video, we'll begin by showing 
 ![Preview](/gif.gif)
 
 ![App UI](/ui.png)
+# caliform
