@@ -12,7 +12,7 @@ class SmartHomeApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'TheFlutterWay Smart Home Animated App',
+          title: 'Caliform',
           theme: SHTheme.dark,
           home: const HomeScreen(),
         );

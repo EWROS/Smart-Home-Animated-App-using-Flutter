@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_home_animation/core/shared/domain/entities/smart_room.dart';
 import 'package:smart_home_animation/core/shared/presentation/widgets/parallax_image_card.dart';
 import 'package:smart_home_animation/core/shared/presentation/widgets/sh_app_bar.dart';
+import 'package:smart_home_animation/core/shared/presentation/widgets/shimmer_arrow_horizontal.dart';
 import 'package:ui_common/ui_common.dart';
 
 import '../../../core/shared/presentation/widgets/room_card.dart';
@@ -71,10 +72,10 @@ class RoomDetailItems extends StatelessWidget {
                   offset: Offset(-outDx, 0),
                   child: VerticalRoomTitle(room: room),
                 ),
-                Transform.translate(
-                  offset: Offset(outDx, outDy),
-                  child: const CameraIconButton(),
-                ),
+                // Transform.translate(
+                //   offset: Offset(outDx, outDy),
+                //   child: const CameraIconButton(),
+                // ),
                 Transform.translate(
                   offset: Offset(0, outDy),
                   child: const AnimatedUpwardArrows(),
@@ -88,8 +89,7 @@ class RoomDetailItems extends StatelessWidget {
           FadeTransition(
             opacity: animation,
             child: Container(
-              transform:
-                  Matrix4.translationValues(0, -200 * (1 - animation.value), 0),
+              // transform: Matrix4.translationValues(0, -200 * (1 - animation.value), 0),
               padding: EdgeInsets.only(top: topPadding + 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -99,7 +99,17 @@ class RoomDetailItems extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: context.displaySmall.copyWith(height: .9),
                   ),
-                  const Text('SETTINGS', textAlign: TextAlign.center),
+                  Column(
+                    children: [
+                      const Text(
+                        'Swipe and find',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+                      const ShimmerArrowsHorizontal(), // 🔥 sezgisel swipe animasyonu
+                    ],
+                  ),
                   Expanded(
                     child: RoomDetailsPageView(
                       animation: animation,

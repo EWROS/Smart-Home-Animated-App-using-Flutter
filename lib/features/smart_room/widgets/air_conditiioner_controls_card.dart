@@ -54,7 +54,7 @@ class AirConditionerControlsCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        Text('${room.airHumidity.toInt()}%'),
+                        Text('jgkjhkjhlkjh%'),
                       ],
                     ),
                   ),

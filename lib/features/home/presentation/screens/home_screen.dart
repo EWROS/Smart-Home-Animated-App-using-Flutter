@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               const SizedBox(height: 24),
-              Text("SELECT A ROOM", style: context.bodyLarge),
+              Text("CALIFORM COLLECTIONS", style: context.bodyLarge),
               height32,
               Expanded(
                 child: Stack(
@@ -67,9 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             roomSelectorNotifier: roomSelectorNotifier,
                             pageNotifier: pageNotifier,
                           ),
-                          SmHomeBottomNavigationBar(
-                            roomSelectorNotifier: roomSelectorNotifier,
-                          ),
+                          SmHomeBottomNavigationBar(roomSelectorNotifier: roomSelectorNotifier),
                         ],
                       ),
                     ),

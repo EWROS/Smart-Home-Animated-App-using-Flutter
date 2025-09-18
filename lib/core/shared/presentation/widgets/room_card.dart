@@ -87,7 +87,7 @@ class RoomCard extends StatelessWidget {
                         parallaxValue: percent,
                       ),
                       VerticalRoomTitle(room: room),
-                      const CameraIconButton(),
+                      // const CameraIconButton(),
                       const AnimatedUpwardArrows()
                     ],
                   ),
@@ -166,16 +166,20 @@ class VerticalRoomTitle extends StatelessWidget {
     // final dx = 50 * animationValue;
     // final opacity = 1 - animationValue;
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.topCenter,
       child: RotatedBox(
-        quarterTurns: -1,
-        child: FittedBox(
-          child: Padding(
-            padding: EdgeInsets.only(left: 40.h, right: 20.h, top: 12.w),
-            child: Text(
-              room.name.replaceAll(' ', ''),
-              maxLines: 1,
-              style: context.displayLarge.copyWith(color: SHColors.textColor),
+        quarterTurns: 0,
+        child: Padding(
+          padding: EdgeInsets.only(left: 20.h, right: 20.h, top: 12.w),
+          child: Text(
+            room.name,
+            //room.name.replaceAll(' ', ''),
+            maxLines: 2,
+            style: TextStyle(
+              color: SHColors.textColor,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.5,
             ),
           ),
         ),

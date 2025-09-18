@@ -17,7 +17,7 @@ class BackgroundRoomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform(
-      transform: Matrix4.translationValues(0, 80 * translation, 0),
+      transform: Matrix4.translationValues(0, 20 * translation, 0),
       child: DecoratedBox(
         decoration: const BoxDecoration(
           color: SHColors.cardColor,
@@ -34,48 +34,22 @@ class BackgroundRoomCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _RoomInfoRow(
-              icon: const Icon(SHIcons.thermostat),
-              label: const Text('Temperature'),
-              data: '${room.temperature}°',
-            ),
-            height4,
-            _RoomInfoRow(
-              icon: const Icon(SHIcons.waterDrop),
-              label: const Text('Air Humidity'),
-              data: '${room.airHumidity}%',
-            ),
-            height4,
-            const _RoomInfoRow(
-              icon: Icon(SHIcons.timer),
-              label: Text('Timer'),
-              data: null,
-            ),
-            height12,
+            // _RoomInfoRow(
+            //   text: room.urunSayisi.toString(),
+            //   subText: room.urunText,
+            // ),
+            // height4,
             const SHDivider(),
             Padding(
               padding: EdgeInsets.all(12.sp),
-              child: Row(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _DeviceIconSwitcher(
-                    onTap: (value) {},
-                    icon: const Icon(SHIcons.lightBulbOutline),
-                    label: const Text('Lights'),
-                    value: room.lights.isOn,
+                  _RoomInfoRow(
+                    text: room.urunSayisi.toString(),
+                    subText: room.urunText,
                   ),
-                  _DeviceIconSwitcher(
-                    onTap: (value) {},
-                    icon: const Icon(SHIcons.fan),
-                    label: const Text('Air-conditioning'),
-                    value: room.airCondition.isOn,
-                  ),
-                  _DeviceIconSwitcher(
-                    onTap: (value) {},
-                    icon: const Icon(SHIcons.music),
-                    label: const Text('Music'),
-                    value: room.musicInfo.isOn,
-                  ),
+                  height4,
                 ],
               ),
             ),
@@ -130,58 +104,54 @@ class _DeviceIconSwitcher extends StatelessWidget {
 
 class _RoomInfoRow extends StatelessWidget {
   const _RoomInfoRow({
-    required this.icon,
-    required this.label,
-    required this.data,
+    required this.text,
+    required this.subText,
   });
 
-  final Icon icon;
-  final Text label;
-  final String? data;
+  final String text;
+  final String subText;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        width32,
-        IconTheme(
-          data: context.iconTheme.copyWith(size: 18.sp),
-          child: icon,
-        ),
-        width4,
-        Expanded(
-          child: DefaultTextStyle(
-            style: context.bodySmall.copyWith(
-              color: data == null ? context.textColor.withOpacity(.6) : null,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 8.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          RichText(
+            text: TextSpan(
+              style: GoogleFonts.montserrat(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w500,
+                color: SHColors.textColor,
+              ),
+              children: [
+                const TextSpan(
+                  text: 'Toplam Ürün: ',
+                  style: TextStyle(fontWeight: FontWeight.w400),
+                ),
+                TextSpan(
+                  text: text, // örn: "12"
+                  style: const TextStyle(fontWeight: FontWeight.w700),
+                ),
+              ],
             ),
-            child: label,
           ),
-        ),
-        if (data != null)
-          Text(
-            data!,
-            style: GoogleFonts.montserrat(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w700,
-            ),
-          )
-        else
-          Row(
+          SizedBox(height: 4.h),
+          Wrap(
             children: [
-              const BlueLightDot(),
-              width4,
               Text(
-                'OFF',
+                subText,
                 style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w800,
                   fontSize: 12.sp,
-                  color: SHColors.textColor.withOpacity(.6),
+                  fontWeight: FontWeight.w400,
+                  color: SHColors.textColor.withOpacity(.8),
                 ),
               ),
             ],
           ),
-        width32,
-      ],
+        ],
+      ),
     );
   }
 }
